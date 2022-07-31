@@ -14,5 +14,5 @@
 ## Screenshots
 
 ![App Screenshot](https://github.com/PyziaA/CurrencyWallet/blob/main/public/asset/demo_image/Login.png)
-![App Screenshot](https://github.com/PyziaA/CurrencyWallet/blob/main/public/asset/demo_image/Create.png)
+![App Screenshot](https://github.com/PyziaA/CurrencyWallet/blob/main/public/asset/demo_image/Add.png)
 ![App Screenshot](https://github.com/PyziaA/CurrencyWallet/blob/main/public/asset/demo_image/Profit.png)
