@@ -35,7 +35,7 @@ class HomeController
 // Value of cash held at the date of purchase:
         foreach($data as $value){
             $code=$value['currency']; //code EUR USD 
-            $cashNotAct[$code]= $this ->productService->getValueOnBoughtDay($actualData, $value);
+            $cashNotAct[$code]= $this ->productService->getValueOnBoughtDay($value);
         }
 //Value of cash held today (profit/loss)
         foreach ($sum as $singleSum) {

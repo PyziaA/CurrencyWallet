@@ -1,10 +1,20 @@
 <?php
 
 namespace App\provider;
+use Exception;
+use ErrorException;
 
 class DataProvider {
 
 public function getValue(){
+
+    set_error_handler(
+        function ($severity, $message, $file, $line) {
+            throw new ErrorException($message, $severity, $severity, $file, $line);
+        }
+    );
+
+    try {
 
     $context = stream_context_create(
         array(
@@ -13,8 +23,7 @@ public function getValue(){
             )
         )
     );
-    
-    $dataNBP = file_get_contents("http://www.nbp.pl/Kursy/KursyA.html",  false, $context);
+    $dataNBP = file_get_contents("http://www.nbpt.pl/Kursy/KursyA.html",  false, $context);
     $dataNBP = explode("tbody", $dataNBP);
     $dataNBP = explode("<tr", $dataNBP[1]);
     array_shift($dataNBP);
@@ -42,6 +51,25 @@ public function getValue(){
         $currencyScaler= array_merge($currencyScaler, array($currencyCode => $currencyConversionFactor));
         
     }
+} catch (Exception $e) {
+    $currencyValue = array(); 
+    $currencyScaler = array();
+    $api=file_get_contents("http://api.nbp.pl/api/exchangerates/tables/a");
+    $api=json_decode($api, 1);
+    $api=$api[0]['rates'];
+    foreach($api as $currencySingleValue){
+        $currencySingleValue=array_slice($currencySingleValue,1);
+        $key=$currencySingleValue['code'];
+        $currencySingleValue[$key]=$currencySingleValue['mid'];
+        unset($currencySingleValue['mid']);
+        $currencySingleValue=array_slice($currencySingleValue,1);
+        $currencyValue[$key]=$currencySingleValue[$key];
+        $tabScaler= (float) 1;
+        $currencyScaler[$key] = $tabScaler;
+    }
+}
+
+restore_error_handler();
     return [
         'tabValue' =>  $currencyValue, // wartość pieniędzy 
         'tabScaler' => $currencyScaler // przelicznik 

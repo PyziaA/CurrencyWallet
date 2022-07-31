@@ -15,6 +15,7 @@
             <div class="card">
                 <div class="card-header">
                     Add your money!
+                    <img src="../demo_image/Login.png" width="266" height="500"/>
                 </div>
                 <div class="card-body">
                      <form action="<?php echo url('wallet/store') ?>" method="post">
@@ -44,6 +45,7 @@
                         </div>
                         <div class="form-group">
                             <label>Purchase Price</label>
+                            <h6 class="font-italic">Note: Enter the purchase price of a single unit of currency, for example 1 HUF, 1 EUR</h6>
                             <input type="number" step="0.01" class="form-control" name="price" id="price">
                         </div>
                         <button type="submit" class="btn btn-primary"> Create </button>

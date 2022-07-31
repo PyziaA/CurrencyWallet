@@ -11,7 +11,7 @@
                         
                 <li class="nav-item text-white pt-2 pr-2"><?php if(session_has('user_name'))
                 {?>
-                    <i class="fa-solid fa-user"></i> Witaj <?php
+                    <i class="fa-solid fa-user"></i> Hello <?php
                 echo (session_get('user_name'));
                 }
                 ?>
