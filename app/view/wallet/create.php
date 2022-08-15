@@ -15,7 +15,6 @@
             <div class="card">
                 <div class="card-header">
                     Add your money!
-                    <img src="../demo_image/Login.png" width="266" height="500"/>
                 </div>
                 <div class="card-body">
                      <form action="<?php echo url('wallet/store') ?>" method="post">
